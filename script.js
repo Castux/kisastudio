@@ -63,8 +63,6 @@ function updateAllLists()
 		count++;
 	}
 
-	console.log(ordering);
-
 	for(list of document.getElementsByClassName("player-list"))
 	{
 		updateList(list);
@@ -75,25 +73,21 @@ function updateList(list)
 {
 	var topN = document.getElementById("topN").value;
 
+	var top = [... list.children];
+	var bottom = top.splice(topN);
+
 	// Colorize top vs not-top
 
-	for(var i = 0 ; i < list.childNodes.length ; i++)
-	{
-		if (i < topN)
-			list.childNodes[i].classList.remove("list-group-item-dark");
-		else
-			list.childNodes[i].classList.add("list-group-item-dark");
-	}
+	top.forEach(c => c.classList.remove("list-group-item-dark"));
+	bottom.forEach(c => c.classList.add("list-group-item-dark"));
 
 	// Sort not-top according to source list
 
-	sortNonTop(list, topN);
-}
+	bottom.sort((a,b) => ordering[a.innerText] - ordering[b.innerText]);
 
-function sortNonTop(list, topN)
-{
-	var top = [... list.children];
-	var bottom = top.splice(topN);
+	// Reinsert
+
+	top.concat(bottom).forEach(c => list.appendChild(c));
 }
 
 function handleEdit(ev)
