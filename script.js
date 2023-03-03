@@ -16,14 +16,59 @@ function handleSource(ev)
 		list.appendChild(elem);
 	});
 
-	Sortable.create(list, {
-		animation: 150
-	});
-
 	list.style.display = "";
 
 	var buttondiv = document.getElementById("edit-button-container");
 	buttondiv.style.display = "";
+
+	cloneItems();
+
+	Sortable.create(list, {
+		animation: 150
+	});
+}
+
+function cloneItems()
+{
+	var list = document.getElementById("main-list");
+
+	var columns = document.getElementsByClassName("player-list");
+	for(var i = 0; i < columns.length; i++)
+	{
+		var newNode = list.cloneNode(true)
+		newNode.classList.add("player-list");
+		newNode.id = "";
+
+		columns[i].replaceWith(newNode);
+
+		Sortable.create(newNode, {
+			animation: 150,
+			onSort: ev => updateList(ev.item.parentNode)
+		});
+	}
+
+	updateAllLists();
+}
+
+function updateAllLists()
+{
+	for(list of document.getElementsByClassName("player-list"))
+	{
+		updateList(list);
+	}
+}
+
+function updateList(list)
+{
+	var topN = document.getElementById("topN").value;
+
+	for(var i = 0 ; i < list.childNodes.length ; i++)
+	{
+		if (i < topN)
+			list.childNodes[i].classList.remove("list-group-item-dark");
+		else
+			list.childNodes[i].classList.add("list-group-item-dark");
+	}
 }
 
 function handleEdit(ev)
@@ -52,6 +97,9 @@ function setup()
 
 	var edit_button = document.getElementById("edit-button");
 	edit_button.onclick = handleEdit;
+
+	var topN = document.getElementById("topN");
+	topN.onchange = updateAllLists;
 }
 
 

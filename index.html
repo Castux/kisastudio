@@ -10,11 +10,24 @@
 		<div class="container my-3 py-3">
 
 			<h1>Eurovision Song Contest Kisastudio Supertool!</h1>
-			<p>Some cool stuff 'bout to happen.</p>
+
+			<div class="row mb-3 align-items-center">
+				<div class="col-auto">
+					<label for="topN" class="col-form-label">Guess the top</label>
+				</div>
+				<div class="col-1">
+					<input type="number" id="topN" class="form-control" value="5" min="1">
+				</div>
+				<div class="col-auto">
+					<span id="passwordHelpInline" class="form-text">
+						contestants.
+					</span>
+				</div>
+			</div>
 
 			<div class="row" id="main-row">
 
-				<div class="col-3" id="first-col">
+				<div class="col" id="first-col">
 					<h2>Contestants</h2>
 					<div class="input-group mb-3">
 						<textarea class="form-control" rows=40 id="main-list-text"></textarea>
@@ -30,6 +43,21 @@
 							</svg>
 						</button>
 					</div>
+				</div>
+
+				<div class="col" class="player-col">
+					<h2 contenteditable="true">Player 1</h2>
+					<div class="list-group mb-3 player-list"></div>
+				</div>
+
+				<div class="col" class="player-col">
+					<h2 contenteditable="true">Player 2</h2>
+					<div class="list-group mb-3 player-list"></div>
+				</div>
+
+				<div class="col" class="player-col">
+					<h2 contenteditable="true">Player 3</h2>
+					<div class="list-group mb-3 player-list"></div>
 				</div>
 
 			</div>
