@@ -81,20 +81,11 @@ function updateList(list)
 	var top = [... list.children];
 	var bottom = top.splice(topN);
 
-	// Colorize top vs not-top
-
 	top.forEach(c => c.classList.remove("list-group-item-dark"));
 	bottom.forEach(c => c.classList.add("list-group-item-dark"));
 
-	// Sort not-top according to source list
-
 	bottom.sort((a,b) => ordering[a.innerText] - ordering[b.innerText]);
-
-	// Reinsert
-
 	top.concat(bottom).forEach(c => list.appendChild(c));
-
-	// Score!
 
 	computeScore(list, topN);
 }
@@ -135,7 +126,6 @@ function handleEdit(ev)
 	mainList.replaceChildren();
 	mainList.style.display = "none";
 
-	var source = document.getElementById("main-list-text");
 	source.value = values.join("\n");
 	source.parentNode.style.display = "";
 
@@ -189,15 +179,11 @@ function setup()
 	source.onchange = handleSource;
 	source.onblur = handleSource;
 
-	var editButton = document.getElementById("edit-button");
-	editButton.onclick = handleEdit;
-
-	var topN = document.getElementById("topN");
-	topN.onchange = updateAllLists;
+	document.getElementById("edit-button").onclick = handleEdit;
+	document.getElementById("topN").onchange = updateAllLists;
 
 	document.getElementById("2023-semi-1").onclick = () => presetList(list_2023_semi_1);
 	document.getElementById("2023-semi-2").onclick = () => presetList(list_2023_semi_2);
 }
-
 
 setup();
