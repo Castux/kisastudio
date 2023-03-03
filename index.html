@@ -9,7 +9,20 @@
 	<body>
 		<div class="container my-3 py-3">
 
-			<h1>Eurovision Song Contest Kisastudio Supertool!</h1>
+			<h1 class="mb-3">Eurovision Song Contest Kisastudio Supertool!</h1>
+
+			<div class="row mb-3">
+				<button type="button" id="2023-semi-1" class="btn btn-outline-secondary mx-3">Eurovision 2023 1st Semifinal</button>
+				<button type="button" id="2023-semi-2" class="btn btn-outline-secondary mx-3">Eurovision 2023 2st Semifinal</button>
+				<button type="button" id="2023-final" class="btn btn-outline-secondary mx-3" disabled>Eurovision 2023 Final</button>
+				<button type="button" class="btn btn-secondary mx-3" id="edit-button" style="display:none;">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+						<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+						<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+					</svg>
+					Edit
+				</button>
+			</div>
 
 			<div class="row mb-3 align-items-center">
 				<div class="col-auto">
@@ -32,32 +45,31 @@
 					<div class="input-group mb-3">
 						<textarea class="form-control" rows=40 id="main-list-text"></textarea>
 					</div>
-
 					<div class="list-group mb-3" id="main-list" style="display:none;"></div>
-
-					<div class="mb-3" id="edit-button-container" style="display:none;">
-						<button type="button" class="btn btn-secondary" id="edit-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-								<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
-								<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
-							</svg>
-						</button>
-					</div>
 				</div>
 
 				<div class="col" class="player-col">
 					<h2 contenteditable="true">Player 1</h2>
 					<div class="list-group mb-3 player-list"></div>
+					<div class="score">0%</div>
 				</div>
 
 				<div class="col" class="player-col">
 					<h2 contenteditable="true">Player 2</h2>
 					<div class="list-group mb-3 player-list"></div>
+					<div class="score">0%</div>
 				</div>
 
 				<div class="col" class="player-col">
 					<h2 contenteditable="true">Player 3</h2>
 					<div class="list-group mb-3 player-list"></div>
+					<div class="score">0%</div>
+				</div>
+
+				<div class="col" class="player-col">
+					<h2 contenteditable="true">Player 4</h2>
+					<div class="list-group mb-3 player-list"></div>
+					<div class="score">0%</div>
 				</div>
 
 			</div>

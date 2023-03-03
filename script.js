@@ -1,10 +1,12 @@
+var source = document.getElementById("main-list-text");
 var mainList = document.getElementById("main-list");
 
 function handleSource(ev)
 {
-	var values = ev.target.value.split('\n');
-	ev.target.parentNode.style.display = "none";
+	var values = source.value.split('\n');
+	source.parentNode.style.display = "none";
 
+	mainList.replaceChildren();
 	values.forEach(v =>
 	{
 		if (v == "") return;
@@ -16,9 +18,13 @@ function handleSource(ev)
 		mainList.appendChild(elem);
 	});
 
+	var topN = document.getElementById("topN");
+	topN.max = mainList.childNodes.length;
+	topN.value = Math.min(topN.value, topN.max);
+
 	mainList.style.display = "";
 
-	var buttondiv = document.getElementById("edit-button-container");
+	var buttondiv = document.getElementById("edit-button");
 	buttondiv.style.display = "";
 
 	cloneItems();
@@ -31,14 +37,13 @@ function handleSource(ev)
 
 function cloneItems()
 {
-	var columns = document.getElementsByClassName("player-list");
-	for(var i = 0; i < columns.length; i++)
+	for (list of document.getElementsByClassName("player-list"))
 	{
 		var newNode = mainList.cloneNode(true)
 		newNode.classList.add("player-list");
 		newNode.id = "";
 
-		columns[i].replaceWith(newNode);
+		list.replaceWith(newNode);
 
 		Sortable.create(newNode, {
 			animation: 150,
@@ -88,6 +93,36 @@ function updateList(list)
 	// Reinsert
 
 	top.concat(bottom).forEach(c => list.appendChild(c));
+
+	// Score!
+
+	computeScore(list, topN);
+}
+
+function computeScore(list, topN)
+{
+	var items = [... list.children].map(x => x.innerText);
+	var N = items.length;
+	var bottom = N - topN;
+
+	var count = 0;
+
+	for(var i = 0 ; i < N ; i++)
+	{
+		for(var j = i + 1 ; j < N ; j++)
+		{
+			if (ordering[items[i]] < ordering[items[j]])
+				count++;
+		}
+	}
+
+	var maxScore = N * (N-1) / 2;
+	var minScore = bottom * (bottom - 1) / 2;
+	var score = count - minScore;
+	var perc = score / (maxScore - minScore) * 100;
+
+	var scoreDiv = list.parentNode.querySelector(".score");
+	scoreDiv.innerText = `${score} (${perc.toFixed(1)}%)`;
 }
 
 function handleEdit(ev)
@@ -104,20 +139,64 @@ function handleEdit(ev)
 	source.value = values.join("\n");
 	source.parentNode.style.display = "";
 
-	var buttondiv = document.getElementById("edit-button-container");
+	var buttondiv = document.getElementById("edit-button");
 	buttondiv.style.display = "none";
+}
+
+const list_2023_semi_1 =
+`Croatia
+Ireland
+Latvia
+Malta
+Norway
+Portugal
+Serbia
+Azerbaijan
+Czech Republic
+Finland
+Israel
+Moldova
+Netherlands
+Sweden
+Switzerland`;
+
+const list_2023_semi_2 =
+`Armenia
+Belgium
+Cyprus
+Denmark
+Estonia
+Greece
+Iceland
+Romania
+Albania
+Australia
+Austria
+Georgia
+Lithuania
+Poland
+San Marino
+Slovenia`;
+
+function presetList(src)
+{
+	source.value = src;
+	handleSource();
 }
 
 function setup()
 {
-	var source = document.getElementById("main-list-text");
 	source.onchange = handleSource;
+	source.onblur = handleSource;
 
-	var edit_button = document.getElementById("edit-button");
-	edit_button.onclick = handleEdit;
+	var editButton = document.getElementById("edit-button");
+	editButton.onclick = handleEdit;
 
 	var topN = document.getElementById("topN");
 	topN.onchange = updateAllLists;
+
+	document.getElementById("2023-semi-1").onclick = () => presetList(list_2023_semi_1);
+	document.getElementById("2023-semi-2").onclick = () => presetList(list_2023_semi_2);
 }
 
 
