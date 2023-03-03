@@ -1,9 +1,9 @@
+var mainList = document.getElementById("main-list");
+
 function handleSource(ev)
 {
 	var values = ev.target.value.split('\n');
 	ev.target.parentNode.style.display = "none";
-
-	var list = document.getElementById("main-list");
 
 	values.forEach(v =>
 	{
@@ -13,29 +13,28 @@ function handleSource(ev)
 		elem.classList.add("list-group-item", "py-1");
 		elem.innerHTML = v;
 
-		list.appendChild(elem);
+		mainList.appendChild(elem);
 	});
 
-	list.style.display = "";
+	mainList.style.display = "";
 
 	var buttondiv = document.getElementById("edit-button-container");
 	buttondiv.style.display = "";
 
 	cloneItems();
 
-	Sortable.create(list, {
-		animation: 150
+	Sortable.create(mainList, {
+		animation: 150,
+		onSort: updateAllLists
 	});
 }
 
 function cloneItems()
 {
-	var list = document.getElementById("main-list");
-
 	var columns = document.getElementsByClassName("player-list");
 	for(var i = 0; i < columns.length; i++)
 	{
-		var newNode = list.cloneNode(true)
+		var newNode = mainList.cloneNode(true)
 		newNode.classList.add("player-list");
 		newNode.id = "";
 
@@ -50,8 +49,22 @@ function cloneItems()
 	updateAllLists();
 }
 
+var ordering = {};
+
 function updateAllLists()
 {
+	ordering = {};
+
+	var count = 0;
+	for (c of mainList.children)
+	{
+		var text = c.innerText;
+		ordering[text] = count;
+		count++;
+	}
+
+	console.log(ordering);
+
 	for(list of document.getElementsByClassName("player-list"))
 	{
 		updateList(list);
@@ -62,6 +75,8 @@ function updateList(list)
 {
 	var topN = document.getElementById("topN").value;
 
+	// Colorize top vs not-top
+
 	for(var i = 0 ; i < list.childNodes.length ; i++)
 	{
 		if (i < topN)
@@ -69,18 +84,27 @@ function updateList(list)
 		else
 			list.childNodes[i].classList.add("list-group-item-dark");
 	}
+
+	// Sort not-top according to source list
+
+	sortNonTop(list, topN);
+}
+
+function sortNonTop(list, topN)
+{
+	var top = [... list.children];
+	var bottom = top.splice(topN);
 }
 
 function handleEdit(ev)
 {
 	var values = [];
-	var list = document.getElementById("main-list");
-	for (c of list.children)
+	for (c of mainList.children)
 	{
 		values.push(c.innerHTML);
 	}
-	list.replaceChildren();
-	list.style.display = "none";
+	mainList.replaceChildren();
+	mainList.style.display = "none";
 
 	var source = document.getElementById("main-list-text");
 	source.value = values.join("\n");
