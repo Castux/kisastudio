@@ -2,6 +2,8 @@
 
 **[Click here to open the tool!](https://castux.github.io/kisastudio/)**
 
+[![Screenshot](kisastudio.png)](https://castux.github.io/kisastudio/)
+
 ## How to use?
 
 1. Load the list of countries into the leftmost column using the preset buttons, or click "Edit" and fill them in yourself (one entry per line).
