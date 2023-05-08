@@ -24,7 +24,7 @@ It's a good method! I swear!
 
 ## How does it work in more detail?
 
-This method for scoring is based on the [Kendall-Tau distance for permutations](https://en.wikipedia.org/wiki/Kendall_tau_distance). It's actually the exact opposite (the distance counts pairs in the *incorrect* order, so it is larger when the list are more different, and it is 0 when they are the same).
+This method for scoring is based on the [Kendall tau distance for permutations](https://en.wikipedia.org/wiki/Kendall_tau_distance). It's actually the exact opposite (the distance counts pairs in the *incorrect* order, so it is larger when the list are more different, and it is 0 when they are the same).
 
 This gives our score some good mathematical properties which make it a sane choice for the purpose of determining how close to reality your guess is:
 
