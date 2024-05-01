@@ -133,40 +133,33 @@ function handleEdit(ev)
 	buttondiv.style.display = "none";
 }
 
-const list_2023_semi_1 =
-`Croatia
-Ireland
-Latvia
-Malta
-Norway
-Portugal
-Serbia
-Azerbaijan
-Czech Republic
+const list_2023_final =
+`Sweden
 Finland
 Israel
-Moldova
-Netherlands
-Sweden
-Switzerland`;
-
-const list_2023_semi_2 =
-`Armenia
+Italy
+Norway
+Ukraine
 Belgium
-Cyprus
-Denmark
 Estonia
-Greece
-Iceland
-Romania
-Albania
 Australia
-Austria
-Georgia
+Czechia
 Lithuania
+Cyprus
+Croatia
+Armenia
+Austria
+France
+Spain
+Moldova
 Poland
-San Marino
-Slovenia`;
+Switzerland
+Slovenia
+Albania
+Portugal
+Serbia
+United Kingdom
+Germany`;
 
 function presetList(src)
 {
@@ -182,8 +175,7 @@ function setup()
 	document.getElementById("edit-button").onclick = handleEdit;
 	document.getElementById("topN").onchange = updateAllLists;
 
-	document.getElementById("2023-semi-1").onclick = () => presetList(list_2023_semi_1);
-	document.getElementById("2023-semi-2").onclick = () => presetList(list_2023_semi_2);
+	document.getElementById("2023-final").onclick = () => presetList(list_2023_final);
 }
 
 setup();
