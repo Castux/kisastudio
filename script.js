@@ -161,6 +161,34 @@ Serbia
 United Kingdom
 Germany`;
 
+const list_2024_final =
+`Sweden "Unforgettable"
+Ukraine "Teresa & Maria"
+Germany "Always on the Run"
+Luxembourg "Fighter"
+Netherlands "Europapa"
+Israel "Hurricane"
+Lithuania "Luktelk"
+Spain "Zorra"
+Estonia "(Nendest) narko..."
+Ireland "Doomsday Blue"
+Latvia "Hollow"
+Greece "Zari"
+United Kingdom "Dizzy"
+Norway "Ulveham"
+Italy "La noia"
+Serbia "Ramonda"
+Finland "No Rules!"
+Portugal "Grito"
+Armenia "Jako"
+Cyprus "Liar"
+Switzerland "The Code"
+Slovenia "Veronika"
+Croatia "Rim Tim Tagi Dim"
+Georgia "Firefighter"
+France "Mon amour"
+Austria "We Will Rave"`;
+
 function presetList(src)
 {
 	source.value = src;
@@ -176,6 +204,7 @@ function setup()
 	document.getElementById("topN").onchange = updateAllLists;
 
 	document.getElementById("2023-final").onclick = () => presetList(list_2023_final);
+	document.getElementById("2024-final").onclick = () => presetList(list_2024_final);
 }
 
 setup();
