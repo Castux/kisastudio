@@ -189,6 +189,35 @@ Georgia "Firefighter"
 France "Mon amour"
 Austria "We Will Rave"`;
 
+const list_2025_final =
+`
+Norway "Lighter"
+Luxembourg "La poupée monte le son"
+Estonia "Espresso Macchiato"
+Israel "New Day Will Rise"
+Lithuania "Tavo akys"
+Spain "Esa diva"
+Ukraine "Bird of Pray"
+United Kingdom "What the Hell Just Happened?"
+Austria "Wasted Love"
+Iceland "Róa"
+Latvia "Bur man laimi"
+Netherlands "C'est la vie"
+Finland "Ich komme"
+Italy "Volevo essere un duro"
+Poland "Gaja"
+Germany "Baller"
+Greece "Asteromata"
+Armenia "Survivor"
+Switzerland "Voyage"
+Malta "Serving"
+Portugal "Deslocado"
+Denmark "Hallucination"
+Sweden "Bara bada bastu"
+France "Maman"
+San Marino "Tutta l'Italia"
+Albania "Zjerm"`;
+
 function presetList(src)
 {
 	source.value = src;
@@ -205,6 +234,7 @@ function setup()
 
 	document.getElementById("2023-final").onclick = () => presetList(list_2023_final);
 	document.getElementById("2024-final").onclick = () => presetList(list_2024_final);
+	document.getElementById("2025-final").onclick = () => presetList(list_2025_final);
 }
 
 setup();
